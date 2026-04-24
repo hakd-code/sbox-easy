@@ -78,8 +78,7 @@
 ### 1. 下载脚本
 
 ```bash
-wget -O sbox.sh https://raw.githubusercontent.com/hakd-code/sbox-easy/main/sbox.sh
-chmod +x sbox.sh
+bash <(curl -fsSL https://raw.githubusercontent.com/hakd-code/sbox-easy/main/sbox.sh)
 ```
 
 或者直接上传脚本到服务器后执行：
