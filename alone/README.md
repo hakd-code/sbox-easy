@@ -66,19 +66,6 @@
 
 
 
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/hakd-code/sbox-easy/main/sbox.sh)
-```
-
-或者直接上传脚本到服务器后执行：
-
-```bash
-# 若vps遥服务器没有安装bash请先安装它
-apk add bash
-chmod +x sbox.sh
-bash sbox.sh
-```
-
 ### 2. 快速开始
 
 **Hysteria2管理脚本**
