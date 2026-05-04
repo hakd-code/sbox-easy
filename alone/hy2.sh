@@ -115,11 +115,16 @@ install_hy2() {
 
     PASSWORD=$(openssl rand -hex 4)
     
-    echo -ne "\n${GREEN}请输入监听端口 (回车随机): ${NC}"
+    echo -e "\n${GREEN}--- 基础配置 ---${NC}"
+    echo -ne "${GREEN}请输入监听端口 (直接回车则随机生成): ${NC}"
     read INPUT_PORT
-    [[ "$INPUT_PORT" =~ ^[0-9]+$ ]] && PORT=$INPUT_PORT || PORT=$(( ( RANDOM % 55534 ) + 10000 ))
-    
-    PORT=$(( ( RANDOM % 55535 ) + 10000 ))
+
+    if [[ "$INPUT_PORT" =~ ^[0-9]+$ ]] && [ "$INPUT_PORT" -ge 1 ] && [ "$INPUT_PORT" -le 65535 ]; then
+        PORT=$INPUT_PORT
+    else
+        PORT=$(( ( RANDOM % 50000 ) + 10000 ))
+        echo -e "${YELLOW}使用随机端口: $PORT${NC}"
+    fi
     
     echo "$PASSWORD" > "$PASS_FILE"
     echo "$PORT" > "$PORT_FILE"
