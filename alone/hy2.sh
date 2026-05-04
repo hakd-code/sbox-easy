@@ -2,7 +2,7 @@
 set -e
 
 ### ===== 配置参数 =====
-SERVER_NAME="bing.com"
+SERVER_NAME="www.bing.com"
 TAG="HY2"
 WORKDIR="/usr/local/hysteria"
 BIN="/usr/local/bin/hysteria"
@@ -114,7 +114,13 @@ install_hy2() {
     chmod +x "$BIN"
 
     PASSWORD=$(openssl rand -hex 4)
+    
+    echo -ne "\n${GREEN}请输入监听端口 (回车随机): ${NC}"
+    read INPUT_PORT
+    [[ "$INPUT_PORT" =~ ^[0-9]+$ ]] && PORT=$INPUT_PORT || PORT=$(( ( RANDOM % 55534 ) + 10000 ))
+    
     PORT=$(( ( RANDOM % 55535 ) + 10000 ))
+    
     echo "$PASSWORD" > "$PASS_FILE"
     echo "$PORT" > "$PORT_FILE"
 
